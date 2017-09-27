@@ -1,0 +1,132 @@
+﻿
+<!DOCTYPE html>@model Project.Models.Student
+
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script>
+  function clickAlert() {
+    alert("Saved Successfully");
+}
+    </script>
+</head>
+<header>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="#"><h4><b>REGISTERATION FORM</b></h4></a>
+
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+<br>
+<br>
+<br>
+
+<body class="container">
+    <header><h1 align="center">Student Registration</h1></header>
+   
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+           
+            <hr />
+            <br>
+            <br>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-10">
+                    <button>
+                        @Html.ActionLink("All Students", "List")
+                    </button>
+                </div>
+                <br>
+                <br>
+                <br>
+               
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StudentName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.StudentName, new { htmlAttributes = new { @class = "form-control" } })
+                            
+                        @Html.ValidationMessageFor(model => model.StudentName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StudentAge, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.StudentAge, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.StudentAge, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new{ @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Qualification, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.Qualification, "B.E.", new { htmlAttributes = new { @class = "form-control" } })B.E.
+                        @Html.RadioButtonFor(model => model.Qualification, "B.Tech", new { htmlAttributes = new { @class = "form-control" } })B.Tech<br />
+                        @Html.RadioButtonFor(model => model.Qualification, "M.C.A.", new { htmlAttributes = new { @class = "form-control" } })M.C.A.
+                        @Html.RadioButtonFor(model => model.Qualification, "PhD", new { htmlAttributes = new { @class = "form-control" } })PhD
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Qualification, "", new { @class = "text-danger" })
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-md-2">Marital Status</label>
+                    <div class="col-md-10">
+                        <form>
+                            <input type="radio" name="marital" value="UnMarried" checked> UnMarried<br>
+                            <input type="radio" name="marital" value="Married"> Married<br>
+                        </form>
+                    </div>
+                </div>
+      
+                 <div class="form-group">
+                <div class="col-md-offset-1 col-md-10">
+                    <button class="btn btn-danger"> @Html.ActionLink("ReSet", "Index",null,htmlAttributes:new {@class="mybtn" }) 
+                    <style type="text/css">a.mybtn{color:white}</style>
+                    </button>
+                    <input style="color:white;background-color:green" type="submit" value="Save Details"  onclick="clickAlert()"class="btn btn-default"/>
+                </div>
+            </div>
+
+        </div>
+   </div>
+             }
+
+
+
+
+
+
+
+
+    </body>
+</html>
